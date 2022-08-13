@@ -856,7 +856,7 @@
                                 <a href="#"><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                             <div class="footer_contact">
-                                <p>ما تیمی از طراحان و توسعه دهندگان هستیم که افزونه، وردپرس، اچ تی ام ال را با کیفیت بالا ایجاد می کنند...</p>
+                                <p>فروشگاه آرسس تکنو پیشگام در عرضه لوازم خانگی و صنعتی ...</p>
                                 <div class="customer_support">
                                     <div class="support_img_icon">
                                         <img src="assets/img/icon/hotline.png" alt="">
@@ -875,9 +875,23 @@
                         <div class="widgets_container widgets_subscribe">
                             <h3>برای به روزرسانی در خبرنامه مشترک شوید</h3>
                             <div class="subscribe_form">
-                                <form id="mc-form" class="mc-form footer-newsletter">
-                                    <input id="mc-email" type="email" autocomplete="off" placeholder="آدرس ایمیل شما..." />
-                                    <button id="mc-submit">مشترک شدن</button>
+                                
+                                {% for mes in messages %}
+                                    {%if mes%}
+                                        {{'<div class="alert alert-success" role="alert">'}}
+                                        {{mes}}
+                                        {{'</div>'}}
+                                    {% else %}
+
+                                    {%endif%}
+                                {% endfor %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                        
+                                    {% comment %} <input id="mc-email" name="email" type="email" autocomplete="off" placeholder="آدرس ایمیل شما..." /> {% endcomment %}
+                                    {{form.as_p}}
+                                    <button type="submit" id="mc-submit">مشترک شدن</button>
+                                    <!-- <input type="submit" id="mc-submit" value="مشترک شدن"> -->
                                 </form>
                                 <!-- mailchimp-alerts Start -->
                                 <div class="mailchimp-alerts text-centre">
