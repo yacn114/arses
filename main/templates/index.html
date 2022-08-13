@@ -84,7 +84,7 @@
                         </div>
                         <div class="customer_support">
                             <div class="support_img_icon">
-                                <img src="{% static 'assets/img/icon/icon_phone.png' %}" alt="">
+                                <img src="{% static 'assets/img/icon/icon_phone.png' %}" alt="آرسس تکنو">
                             </div>
                             <div class="customer_support_text">
                                 <p>
@@ -229,7 +229,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-md-6">
                         <div class="logo">
-                            <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %}" alt=""></a>
+                            <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %}" alt="آرسس تکنو"></a>
                         </div>
                     </div>
                     <div class="col-lg-10 col-md-6 header_position">
@@ -287,7 +287,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="banner_static_menu">
-                                                    <a href="shop.html"><img src="{% static 'assets/img/bg/banner1.jpg' %}" alt=""></a>
+                                                    <a href="shop.html"><img src="{% static 'assets/img/bg/banner1.jpg' %}" alt="آرسس تکنو"></a>
                                                 </div>
                                             </div>
                                         </li>
@@ -316,7 +316,7 @@
                             </div>
                             <div class="customer_support">
                                 <div class="support_img_icon">
-                                    <img src="{% static 'assets/img/icon/icon_phone.png' %}" alt="">
+                                    <img src="{% static 'assets/img/icon/icon_phone.png' %}" alt="آرسس تکنو">
                                 </div>
                                 <div class="customer_support_text">
                                     <p>
@@ -484,7 +484,7 @@
                                 <div class="mini_cart">
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="#"><img src="{% static 'assets/img/s-product/product.jpg' %}" alt=""></a>
+                                            <a href="#"><img src="{% static 'assets/img/s-product/product.jpg' %}" alt="آرسس تکنو"></a>
                                         </div>
                                         <div class="cart_info">
                                            <a href="#">مادن توسط استیو ماددن کیک 6</a>
@@ -499,7 +499,7 @@
                                     </div>
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="#"><img src="{% static 'assets/img/s-product/product2.jpg' %}" alt=""></a>
+                                            <a href="#"><img src="{% static 'assets/img/s-product/product2.jpg' %}" alt="آرسس تکنو"></a>
                                         </div>
                                         <div class="cart_info">
                                             <a href="#">جعبه ابزار با کلیه ابزارات لازم </a>
@@ -652,7 +652,7 @@
                     <div class="single_banner">
                         <div class="banner_thumb">
                             {% for data in data_banner %}
-                            <a href="#"><img src="ProductImage/{{data.image1}}" alt=""></a>
+                            <a href="#"><img src="ProductImage/{{data.image1}}" alt="آرسس تکنو"></a>
                             {% endfor %}
                         </div>
                     </div>
@@ -661,7 +661,7 @@
                     <div class="single_banner">
                         <div class="banner_thumb">
                             {% for data in data_banner %}
-                            <a href="#"><img src="ProductImage/{{data.image2}}" alt=""></a>
+                            <a href="#"><img src="ProductImage/{{data.image2}}" alt="آرسس تکنو"></a>
                             {% endfor %}
                         </div>
                     </div>
@@ -686,8 +686,8 @@
                     {% for of in ofpr %}
                     <div class="single_product">
                         <div class="product_thumb">
-                            <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/product/product1.jpg' %}" alt=""></a>
-                            <a class="secondary_img" href="product-details.html"><img src="{% static 'assets/img/product/product2.jpg' %}" alt=""></a>
+                            <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/product/product1.jpg' %}" alt="آرسس تکنو"></a>
+                            <a class="secondary_img" href="product-details.html"><img src="{% static 'assets/img/product/product2.jpg' %}" alt="آرسس تکنو"></a>
                             <div class="label_product">
                                 <span class="label_sale">-{{of.price_offer}}%</span>
                             </div>
@@ -739,7 +739,7 @@
                         <div class="product_items">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/featured/featured6.jpg' %}" alt=""></a>
+                                    <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/featured/featured6.jpg' %}" alt="آرسس تکنو"></a>
                                 </div>
                                 <div class="product_content">
                                     <h4> برترین ها و مجموعه های {{mmdi.name}}	</h4>
@@ -775,7 +775,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="banner_thumb">
-                        <a href="#"><img src="ProductImage/{{banner.image}}" alt=""></a>
+                        <a href="/c/{{banner.category}}"><img src="ProductImage/{{banner.image}}" alt="آرسس تکنو"></a>
                     </div>
                 </div>   
             </div>
@@ -802,18 +802,18 @@
                         {% if al.vip == "yes" %}
                             
 
-                            
+
                         <div class="product_items">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/product/product2.jpg' %}" alt=""></a>
+                                    <a class="primary_img" href="pro/{{al.id}}"><img src="ProductImage/{{al.picture}}" alt="آرسس تکنو"></a>
                                 </div>
                                 <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">{{al}}</a></p>
-                                    <h4><a href="product-details.html">{{al.caption}}</a></h4>
+                                    <p class="manufacture_product"><a href="pro/{{al.id}}">{{al}}</a></p>
+                                    <h4><a href="pro/{{al.id}}">{{al.caption}}</a></h4>
                                     <div class="price_box">
                                         <span class="old_price">{{al.price}} تومان </span>
-                                        <span class="current_price">soon تومان</span>
+                                        <span class="current_price">{{al.price_offer }} تومان</span>
                                     </div>
                                 </div>
                             </div>
@@ -834,7 +834,7 @@
                         
                         {% for br in brand %}
                         <div class="single_brand">
-                            <a href="#"><img src="ProductImage/{{br.image}}" alt=""></a>
+                            <a href="#"><img src="ProductImage/{{br.image}}" alt="آرسس تکنو"></a>
                         </div>
                         {% endfor %}
                     </div>
@@ -853,13 +853,13 @@
                     <div class="col-lg-3 col-md-3 col-sm-5">
                         <div class="widgets_container contact_us">
                             <div class="footer_logo">
-                                <a href="#"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="#"><img src="assets/img/logo/logo.png" alt="آرسس تکنو"></a>
                             </div>
                             <div class="footer_contact">
                                 <p>فروشگاه آرسس تکنو پیشگام در عرضه لوازم خانگی و صنعتی ...</p>
                                 <div class="customer_support">
                                     <div class="support_img_icon">
-                                        <img src="assets/img/icon/hotline.png" alt="">
+                                        <img src="assets/img/icon/hotline.png" alt="آرسس تکنو">
                                     </div>
                                     <div class="customer_support_text">
                                         <p>
@@ -918,10 +918,10 @@
                                     
                                 </ul>
                                 <ul>
-                                    <li><a href="#">اطلاع قانونی</a></li>
-                                    <li><a href="#">پرداخت امن</a></li>
-                                    <li><a href="#">راهنما</a></li>
-                                    <li><a href="my-account.html"> حساب من </a></li>
+                                    {% comment %} <li><a href="#">اطلاع قانونی</a></li> {% endcomment %}
+                                    <li><a href="/security">پرداخت امن</a></li>
+                                    {% comment %} <li><a href="#">راهنما</a></li> {% endcomment %}
+                                    <li><a href="/my-account"> حساب من </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -939,7 +939,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer_payment text-right">
-                            <a href="#"><img src="assets/img/icon/payment.png" alt=""></a>
+                            <a href="#"><img src="assets/img/icon/payment.png" alt="آرسس تکنو"></a>
                         </div>
                     </div>
                 </div>

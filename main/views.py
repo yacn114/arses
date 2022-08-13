@@ -9,6 +9,8 @@ def main(request):
     banner2 = models.Image_trend_2.objects.all()
     banner = models.image_u.objects.first()
     product_all = models.Product.objects.all()
+    for polo in product_all:
+        polo.price_offer = polo.price_offer[1]
     brands = models.Brand.objects.all()
     for e in models.Product.objects.all():
         if e.price_offer != None:

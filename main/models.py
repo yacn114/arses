@@ -69,7 +69,6 @@ class category(models.Model):
     name = models.CharField(_("اسم "),max_length=255)
     image = models.ImageField(_("عکس "),upload_to="category")
     Tpost = models.IntegerField(_("تعداد پست"),default=0)
-    # names = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="Product",null=True,blank=True)
     def __str__(self):
         return self.name
     class Meta:
@@ -93,6 +92,7 @@ class Image_trend_2(models.Model):
 
 class image_u(models.Model):
     image = models.ImageField(_("عکس"),upload_to="main/u")
+    category = models.ForeignKey(category,on_delete=models.CASCADE)
     def __str__(self):
         return "image"
 
