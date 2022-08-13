@@ -32,6 +32,7 @@ class Product(models.Model):
     picture4 = models.ImageField(_("عکس جزییات"),upload_to='ProductImage/picture4')
     vip = models.CharField(_("محصول ویژه"),max_length=20,default="no",choices=[("no","خیر"),("yes","بله")])
     price_offer = models.ForeignKey(Offer,on_delete = models.CASCADE,blank=True,null=True)
+    end_price= models.IntegerField(_("end price"))
     category = models.ForeignKey("category",on_delete=models.CASCADE)
     star = models.IntegerField(_("امتیاز به ستاره"),choices=NUMBERS)
     caption = models.TextField(_("معرفی جزیَی"),)
@@ -111,20 +112,6 @@ class interest(models.Model):
 class sabad(models.Model):
     id_pro = models.IntegerField()
     id_user = models.IntegerField()
-from django.dispatch import receiver
-from django.db.models.signals import post_save,post_delete
-@receiver(post_save,sender=Product)
-def add_to_category(sender,instance,created,**kwargs):
-    if created:
-        b = category.objects.get(id=instance.category.id)
-        b.Tpost += 1
-        b.save()
-
-@receiver(post_delete,sender=Product)
-def delete_category(sender,instance,created,**kwargs):
-    b = category.objects.get(id=instance.category.id)
-    b.Tpost -= 1
-    b.save()
 class Brand(models.Model):
     name = models.CharField(_("نام"),max_length=200)
     image = models.ImageField(_("عکس برند"),upload_to="brands")
@@ -136,3 +123,27 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+from django.dispatch import receiver
+from django.db.models.signals import post_save,post_delete
+@receiver(post_save,sender=Product)
+def add_to_category(sender,instance,created,**kwargs):
+    if created:
+        b = category.objects.get(id=instance.category.id)
+        b.Tpost += 1
+        b.save()
+
+
+@receiver(post_delete,sender=Product)
+def delete_category(sender,instance,created,**kwargs):
+    b = category.objects.get(id=instance.category.id)
+    b.Tpost -= 1
+    b.save()
+
+
+@receiver(post_save,sender=Product)
+def endprice(sender,instance,created,**kwargs):
+    if created:
+        b = round((instance.price/100)*int(str(instance.price_offer)[0:2])+instance.price*-1)
+        a = Product.objects.get(id=instance.id) 
+        a.end_price += b
+        a.save()

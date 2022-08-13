@@ -9,8 +9,7 @@ def main(request):
     banner2 = models.Image_trend_2.objects.all()
     banner = models.image_u.objects.first()
     product_all = models.Product.objects.all()
-    for polo in product_all:
-        polo.price_offer = polo.price_offer[1]
+
     brands = models.Brand.objects.all()
     for e in models.Product.objects.all():
         if e.price_offer != None:
@@ -18,10 +17,7 @@ def main(request):
     category = models.category.objects.all()
     if request.method == "POST":
         form = Emailc(request.POST)
-        
         if form.is_valid():
-        
-            
             email=models.Email()
             email.Email = form.cleaned_data['Email']
             if models.Email.objects.get(Email=email.Email):
