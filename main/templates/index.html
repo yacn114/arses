@@ -881,17 +881,15 @@
                                         {{'<div class="alert alert-success" role="alert">'}}
                                         {{mes}}
                                         {{'</div>'}}
-                                    {% else %}
-
-                                    {%endif%}
+                                        {% endif %}
                                 {% endfor %}
                                 <form method="post">
                                     {% csrf_token %}
                                         
-                                    {% comment %} <input id="mc-email" name="email" type="email" autocomplete="off" placeholder="آدرس ایمیل شما..." /> {% endcomment %}
+                                    
                                     {{form.as_p}}
                                     <button type="submit" id="mc-submit">مشترک شدن</button>
-                                    <!-- <input type="submit" id="mc-submit" value="مشترک شدن"> -->
+                                    
                                 </form>
                                 <!-- mailchimp-alerts Start -->
                                 <div class="mailchimp-alerts text-centre">
@@ -902,11 +900,8 @@
                             </div>
                              <p>ما هرگز آدرس ایمیل شما را با شخص ثالث به اشتراک نمی گذاریم.</p>
                              <div class="footer_social">
-                                 <ul>
-                                     <li><a class="facebook" href="#"><i class="ion-social-facebook"></i></a></li>
-                                     <li><a class="twitter" href="#"><i class="ion-social-twitter"></i></a></li>
-                                     <li><a class="youtube" href="#"><i class="ion-social-youtube"></i></a></li>
-                                     <li><a class="google" href="#"><i class="ion-social-google"></i></a></li>
+                                 <ul style="text-align: center;">
+
                                      <li><a class="instagram" href="#"><i class="ion-social-instagram"></i></a></li>
                                  </ul>
                              </div>
@@ -917,10 +912,10 @@
                             <h3>اطلاعات</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="#">تحویل</a></li>
-                                    <li><a href="about.html">درباره ما </a></li>
-                                    <li><a href="contact.html"> تماس با ما</a></li>
-                                    <li><a href="#">فروشگاه ها</a></li>
+                                    <li><a href="/factors">تحویل</a></li>
+                                    <li><a href="/about">درباره ما </a></li>
+                                    <li><a href="/contact"> تماس با ما</a></li>
+                                    
                                 </ul>
                                 <ul>
                                     <li><a href="#">اطلاع قانونی</a></li>
@@ -939,7 +934,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
-                            <p>کپی رایت &copy; 1398 <a href="#">استر.</a> تمام حقوق محفوظ است.</p>
+                            <p>کپی رایت &copy; 1401 <a href="https://yacn.ir">yacn.ir.</a> تمام حقوق محفوظ است.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
