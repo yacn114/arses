@@ -17,11 +17,11 @@ class Offer(models.Model):
         verbose_name_plural = 'تخفیف ها'
 class Product(models.Model):
     NUMBERS = [
-        (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4),
-        (5, 5),
+        ("1", 1),
+        ("22", 2),
+        ("333", 3),
+        ("4444", 4),
+        ("55555", 5),
     ]
 
     name = models.CharField(_("اسم محصول"),max_length=255)
@@ -33,7 +33,7 @@ class Product(models.Model):
     vip = models.CharField(_("محصول ویژه"),max_length=20,default="no",choices=[("no","خیر"),("yes","بله")])
     price_offer = models.ForeignKey(Offer,on_delete = models.CASCADE,blank=True,null=True)
     category = models.ForeignKey("category",on_delete=models.CASCADE)
-    star = models.IntegerField(_("امتیاز به ستاره"),choices=NUMBERS)
+    star = models.CharField(_("امتیاز به ستاره"),max_length=25,choices=NUMBERS)
     caption = models.TextField(_("معرفی جزیَی"),)
     # commentID = models.ForeignKey(comment)
     detail = models.TextField(_("معرفی دقیق"),)
@@ -114,6 +114,7 @@ class interest(models.Model):
         verbose_name = _("علاقمندی ها")
 class sabad(models.Model):
     id_pro = models.IntegerField()
+    T = models.IntegerField(_("تعداد"),default=1)
     id_user = models.IntegerField(blank=True,null=True)
 
     class Meta:

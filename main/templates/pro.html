@@ -122,24 +122,45 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="product_d_right">
-                                    <form action="#">
+                                    
                                         <h1>{{pro.name}}</h1>
                                         <div class="product_nav">
                                             <ul>
-                                                <form action"/next" method="post">
-                                                    <li class="next"><a href="variable-product.html"><i class="fa fa-angle-right"></i></a></li>
-                                                </form>
-                                                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                                                <li class="prev"><a href="/next/{{pro.id}}"><i class="fa fa-angle-left"></i></a></li>
+                                                
+                                                    <li class="next"><a href="/next/{{pro.id}}"><i class="fa fa-angle-right"></i></a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class=" product_ratting">
                                             <ul>
+                                                {% if pro.star == "1" %}
+                                                {% for star in "1" %}
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                {% endfor %}
+                                                {% endif %}
+                                                {% if pro.star == "22" %}
+                                                {% for star in "22" %}
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                {% endfor %}
+                                                {% endif %}
+                                                {% if pro.star == "333" %}
+                                                {% for star in "333" %}
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                {% endfor %}
+                                                {% endif %}
+
+                                                {% if pro.star == "4444" %}
+                                                {% for star in "4444" %}
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                {% endfor %}
+                                                {% endif %}
+
+                                                {% if pro.star == "55555" %}
+                                                {% for star in "55555" %}
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                <li class="review"><a href="#"> (نظر مشتری ) </a></li>
+                                                {% endfor %}
+                                                {% endif %}
                                             </ul>
 
                                         </div>
@@ -150,42 +171,32 @@
 
                                         </div>
                                         <div class="product_desc">
-                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+                                            <p>{{pro.caption}} </p>
                                         </div>
-                                        <div class="product_variant color">
-                                            <h3>گزینه های موجود</h3>
-                                            <label>رنگ</label>
-                                            <ul>
-                                                <li class="color1"><a href="#"></a></li>
-                                                <li class="color2"><a href="#"></a></li>
-                                                <li class="color3"><a href="#"></a></li>
-                                                <li class="color4"><a href="#"></a></li>
-                                            </ul>
-                                        </div>
+                                        <form action="/sabt/{{pro.id}}" method="post">
                                         <div class="product_variant quantity">
                                             <label>تعداد</label>
-                                            <input min="1" max="100" value="1" type="number">
+                                            {% csrf_token %}
+                                            <input min="1" max="100" name="T" value="1" type="number">
                                             <button class="button" type="submit">افزودن به سبد</button>
-
+                                        </form>
                                         </div>
                                         <div class=" product_d_action">
                                             <ul>
-                                                <li><a href="#" title="افزودن به علاقه مندیها">+ افزودن به علاقه مندیها</a></li>
-                                                <li><a href="#" title="مقایسه محصول">+ مقایسه</a></li>
+                                                <li><a href="/likes/{{pro.id}}" title="افزودن به علاقه مندیها">+ افزودن به علاقه مندیها</a></li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="product_meta">
-                                            <span>دسته: <a href="#">لباس</a></span>
+                                            <span>دسته: <a href="/c/{{pro.category}}">{{pro.category}}</a></span>
                                         </div>
 
-                                    </form>
+                                    
                                     <div class="priduct_social">
                                         <ul>
-                                            <li><a class="facebook" href="#" title="فیس بوک"><i class="fa fa-facebook"></i> پسندیدن</a></li>
-                                            <li><a class="twitter" href="#" title="توییتر"><i class="fa fa-twitter"></i> توییت</a></li>
-                                            <li><a class="pinterest" href="#" title="پینترست"><i class="fa fa-pinterest"></i> ذخیره</a></li>
-                                            <li><a class="google-plus" href="#" title="گوگل +"><i class="fa fa-google-plus"></i> اشتراک</a></li>
-                                            <li><a class="linkedin" href="#" title="لینکدین"><i class="fa fa-linkedin"></i> لینکدین</a></li>
+                                            
+                                            <li><a class="linkedin" href="#" title="instagram"><i class="fa fa-instagram"></i> instagram</a></li>
+                                            <li><a class="linkedin" href="#" title="telegram"><i class="fa fa-telegram"></i> telegram</a></li>
                                         </ul>
                                     </div>
 

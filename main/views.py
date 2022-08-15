@@ -80,3 +80,21 @@ def pro(request,id):
         return render(request,"pro.html",{"pro":pro,"cate":cate,"prod":prod,"banner":banner})
     else:
         return HttpResponseNotFound("404") 
+def next(request,id):
+    try:
+        if models.Product.objects.get(id=int(id)+1):
+            return redirect(f"/pro/{int(id)+1}")
+    except:
+        for i in range(1,100):
+            a = models.Product.objects.filter(id=i)
+            if a:
+                return redirect(f"/pro/{i}")
+def sabt(request,id):
+    try:
+        pro = models.Product.objects.get(id=id)
+        a = request.user.id
+        models.sabad.objects.create(user_id=a,pro_id=pro)
+        return "ok"
+    except:
+        messages.info(request,"شما عوض سایت نشدید")
+        return redirect('/pro/')

@@ -7,6 +7,8 @@ urlpatterns = [
     path('likes/<id>',views.likes),
     path('pro/<id>',views.pro),
     path('sabad/<id>',views.sabad),
+    path('next/<id>',views.next),
+    path('sabt/<id>',views.sabt),
 
     
 ]
