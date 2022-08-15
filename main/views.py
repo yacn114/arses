@@ -9,7 +9,9 @@ def main(request):
     banner2 = models.Image_trend_2.objects.all()
     banner = models.image_u.objects.first()
     product_all = models.Product.objects.all()
-
+    sabad = models.sabad.objects.count()
+    saba = models.sabad.objects.all()
+    ino = models.interest.objects.count()
     brands = models.Brand.objects.all()
     for e in models.Product.objects.all():
         if e.price_offer != None:
@@ -33,4 +35,17 @@ def main(request):
     "index.html",
     {"data_banner":banner2,"ofpr":Offrs,
     "category":category,"allp":product_all,
-    "banner":banner,"brand":brands,"form":form})
+    "banner":banner,"brand":brands,"form":form,
+    "ino":ino,"sabad":sabad,
+    "saba":saba})
+def search(request):
+    if request.method == "POST":
+        print("ok")
+
+def sabadolikes(request):
+    models.sabad.objects.all()
+    models.interest.objects.all()
+    pass
+def likes(request,id):
+    models.Product.objects.get(id=id)
+    
