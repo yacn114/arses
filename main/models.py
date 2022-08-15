@@ -9,7 +9,7 @@ class Offer(models.Model):
     time = models.DateTimeField(_("زمان تخفیف"))
     darsad = models.IntegerField(_("درصد تخفیف"))
     def __str__(self):
-        return str(self.darsad)+ "%  " + str(self.time)
+        return str(self.darsad)
     class Meta:
         db_table = ''
         managed = True
@@ -32,7 +32,6 @@ class Product(models.Model):
     picture4 = models.ImageField(_("عکس جزییات"),upload_to='ProductImage/picture4')
     vip = models.CharField(_("محصول ویژه"),max_length=20,default="no",choices=[("no","خیر"),("yes","بله")])
     price_offer = models.ForeignKey(Offer,on_delete = models.CASCADE,blank=True,null=True)
-    end_price= models.IntegerField(_("end price"))
     category = models.ForeignKey("category",on_delete=models.CASCADE)
     star = models.IntegerField(_("امتیاز به ستاره"),choices=NUMBERS)
     caption = models.TextField(_("معرفی جزیَی"),)
@@ -77,12 +76,13 @@ class category(models.Model):
         managed = True
         verbose_name = ' دسته بندی ها'
         verbose_name_plural = 'دسته بندی ها'
-# image trend 3
+# image trend 2
 class Image_trend_2(models.Model):
     image1 = models.ImageField(_("عکس اولی"),upload_to="main/pic/1")
+    cat1 = models.ForeignKey(category,on_delete=models.CASCADE,related_name="cat1")
     image2 = models.ImageField(_("عکس دومی"),upload_to="main/pic/2")
-    def __str__(self):
-        return str(self.id)
+    cat2 = models.ForeignKey(category,on_delete=models.CASCADE,related_name="cat2")
+
     class Meta:
         db_table = ''
         managed = True
@@ -108,10 +108,18 @@ class image_u(models.Model):
 
 class interest(models.Model):
     id_pro = models.IntegerField()
-    id_user = models.IntegerField()
+    id_user = models.IntegerField(blank=True,null=True)
+    class Meta:
+        verbose_name_plural = _("علاقمندی ها")
+        verbose_name = _("علاقمندی ها")
 class sabad(models.Model):
     id_pro = models.IntegerField()
-    id_user = models.IntegerField()
+    id_user = models.IntegerField(blank=True,null=True)
+
+    class Meta:
+        verbose_name = _("سبد خرید")
+        verbose_name_plural = _("سبد خرید")
+
 class Brand(models.Model):
     name = models.CharField(_("نام"),max_length=200)
     image = models.ImageField(_("عکس برند"),upload_to="brands")
@@ -140,10 +148,3 @@ def delete_category(sender,instance,created,**kwargs):
     b.save()
 
 
-@receiver(post_save,sender=Product)
-def endprice(sender,instance,created,**kwargs):
-    if created:
-        b = round((instance.price/100)*int(str(instance.price_offer)[0:2])+instance.price*-1)
-        a = Product.objects.get(id=instance.id) 
-        a.end_price += b
-        a.save()

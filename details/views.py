@@ -14,3 +14,7 @@ def security(request):
     pass
 def category(request,parametr):
     return HttpResponse(f"ok {parametr}")
+def sabad(request):
+    pass
+def likes(request):
+    pass

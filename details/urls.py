@@ -8,4 +8,6 @@ urlpatterns = [
     path('my-account',views.account,name="account"),
     path('security',views.security,name="security"),
     path('c/<parametr>',views.category,name="security"),
+    path('sabad',views.sabad,name="sabad"),
+    path('likes',views.likes,name="likes"),
 ]
