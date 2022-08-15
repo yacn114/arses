@@ -148,3 +148,4 @@ def delete_category(sender,instance,created,**kwargs):
     b.save()
 
 
+# ofpm.update({"gh" : int((e.price/100)*int(str(e.price_offer)[0:2])+(e.price*-1)),"user_id":e.id})

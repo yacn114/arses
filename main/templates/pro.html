@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
 
-    
+
+{% load custom_tags %}
 {% load static %}
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
@@ -91,36 +91,31 @@
                                 <div class="product-details-tab">
                                     <div id="img-1" class="zoomWrapper single-zoom">
                                         <a href="#">
-                                            <img id="zoom1" src="assets/img/product/productbig2.jpg" data-zoom-image="assets/img/product/productbig2.jpg" alt="big-1">
+                                            <img id="zoom1" src="../ProductImage/{{pro.picture}}" data-zoom-image="../ProductImage/{{pro.picture}}" alt="big-1">
                                         </a>
                                     </div>
 
                                     <div class="single-zoom-thumb">
                                         <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                             <li>
-                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/productbig3.jpg" data-zoom-image="assets/img/product/productbig3.jpg">
-                                                    <img src="assets/img/product/productbig3.jpg" alt="zo-th-1" />
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="../ProductImage/{{pro.picture2}}" data-zoom-image="../ProductImage/{{pro.picture2}}">
+                                                    <img src="../ProductImage/{{pro.picture2}}" alt="zo-th-1" />
                                                 </a>
 
                                             </li>
                                             <li>
-                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/productbig4.jpg" data-zoom-image="assets/img/product/productbig4.jpg">
-                                                    <img src="assets/img/product/productbig4.jpg" alt="zo-th-1" />
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="../ProductImage/{{pro.picture3}}" data-zoom-image="../ProductImage/{{pro.picture3}}">
+                                                    <img src="../ProductImage/{{pro.picture3}}" alt="zo-th-1" />
                                                 </a>
 
                                             </li>
                                             <li>
-                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/productbig5.jpg" data-zoom-image="assets/img/product/productbig5.jpg">
-                                                    <img src="assets/img/product/productbig5.jpg" alt="zo-th-1" />
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="../ProductImage/{{pro.picture4}}" data-zoom-image="../ProductImage/{{pro.picture4}}">
+                                                    <img src="../ProductImage/{{pro.picture4}}" alt="zo-th-1" />
                                                 </a>
 
                                             </li>
-                                            <li>
-                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/productbig6.jpg" data-zoom-image="assets/img/product/productbig6.jpg">
-                                                    <img src="assets/img/product/productbig6.jpg" alt="zo-th-1" />
-                                                </a>
 
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -128,12 +123,13 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="product_d_right">
                                     <form action="#">
-
-                                        <h1>ماشین ظرفشویی هیمالیا</h1>
+                                        <h1>{{pro.name}}</h1>
                                         <div class="product_nav">
                                             <ul>
-                                                <li class="prev"><a href="product-details.html"><i class="fa fa-angle-left"></i></a></li>
-                                                <li class="next"><a href="variable-product.html"><i class="fa fa-angle-right"></i></a></li>
+                                                <form action"/next" method="post">
+                                                    <li class="next"><a href="variable-product.html"><i class="fa fa-angle-right"></i></a></li>
+                                                </form>
+                                                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class=" product_ratting">
@@ -148,8 +144,9 @@
 
                                         </div>
                                         <div class="price_box">
-                                            <span class="current_price"> 7000 تومان </span>
-                                            <span class="old_price"> 8000 تومان </span>
+                                         <span class="old_price">{{pro.price}} تومان</span>
+                                            <span class="current_price"> {% takhfif pro.price pro.price_offer %} تومان </span>
+                                            
 
                                         </div>
                                         <div class="product_desc">

@@ -14,10 +14,10 @@ def main(request):
     saba = models.sabad.objects.all()
     ino = models.interest.objects.count()
     brands = models.Brand.objects.all()
-    ofpm = {}
+    
     for e in models.Product.objects.all():
         if e.price_offer != None:
-            ofpm.update({"gh" : int((e.price/100)*int(str(e.price_offer)[0:2])+(e.price*-1)),"user_id":e.id})
+            
             
             Offrs += models.Product.objects.filter(name= e)
     category = models.category.objects.all()
@@ -41,7 +41,7 @@ def main(request):
     "category":category,"allp":product_all,
     "banner":banner,"brand":brands,"form":form,
     "ino":ino,"sabad":sabad,
-    "saba":saba,"ghymt":ofpm.keys()})
+    "saba":saba})
 
 
 
