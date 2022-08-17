@@ -1,4 +1,5 @@
 
+
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.db import models
@@ -15,6 +16,17 @@ class Offer(models.Model):
         managed = True
         verbose_name = 'تخفیف ها '
         verbose_name_plural = 'تخفیف ها'
+class comment(models.Model):
+    text = models.TextField()
+    user_id = models.IntegerField()
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    datetime = models.DateTimeField(auto_now_add=True)
+    Product_id = models.IntegerField()
+
+    def __str__(self):
+        return str(self.username)
+
+
 class Product(models.Model):
     NUMBERS = [
         ("1", 1),
@@ -24,6 +36,7 @@ class Product(models.Model):
         ("55555", 5),
     ]
 
+    
     name = models.CharField(_("اسم محصول"),max_length=255)
     price = models.IntegerField(_("قیمت به تومان"))
     picture = models.ImageField(_("عکس نمایشی"),upload_to='ProductImage/picture')
@@ -35,7 +48,6 @@ class Product(models.Model):
     category = models.ForeignKey("category",on_delete=models.CASCADE)
     star = models.CharField(_("امتیاز به ستاره"),max_length=25,choices=NUMBERS)
     caption = models.TextField(_("معرفی جزیَی"),)
-    # commentID = models.ForeignKey(comment)
     detail = models.TextField(_("معرفی دقیق"),)
     buyers = models.IntegerField(_("تعداد فروش"),default=0)
     view = models.IntegerField(_("تعداد بازدید"),default=0)
@@ -143,10 +155,9 @@ def add_to_category(sender,instance,created,**kwargs):
 
 
 @receiver(post_delete,sender=Product)
-def delete_category(sender,instance,created,**kwargs):
+def delete_category(sender,instance,**kwargs):
     b = category.objects.get(id=instance.category.id)
     b.Tpost -= 1
     b.save()
 
 
-# ofpm.update({"gh" : int((e.price/100)*int(str(e.price_offer)[0:2])+(e.price*-1)),"user_id":e.id})

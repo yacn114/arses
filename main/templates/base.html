@@ -14,7 +14,7 @@
 
      <!-- CSS 
     ========================= -->
-     <!--bootstrap min css-->
+     <!--bootstrap min css--> 
     <link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
     <!--owl carousel min css-->
     <link rel="stylesheet" href="{% static '/assets/css/owl.carousel.min.css' %}">
@@ -299,10 +299,12 @@
                                         </div>
                                         <div class="cart_info">
                                            <a href="pro/{{pro.id}}">{{pro.name}}</a>
-
-                                            <span class="price_cart">{{pro.price}} تومان</span>
+                                            {% load custom_tags %}
+                                            <span class="quantity">تعداد: 1</span>
+                                            <span class="price_old">{% takhfif pro.price pro.price_offer%} تومان</span>
 
                                         </div>
+
                                         <div class="cart_remove">
                                             <a href="pro/{{pro.id}}"><i class="ion-android-close"></i></a>
                                         </div>
@@ -311,7 +313,16 @@
                                     {% endif %}
                                     {% endfor %}
                                     {% endfor %}
-
+  <div class="mini_cart_table">
+                                        <div class="cart_total">
+                                            <span>مجموع سبد:</span>
+                                            <span class="price">13800 تومان</span>
+                                        </div>
+                                        <div class="cart_total mt-10">
+                                            <span>قیمت کل:</span>
+                                            <span class="price">13800 تومان</span>
+                                        </div>
+                                    </div>
 
 
                                     <div class="mini_cart_footer">

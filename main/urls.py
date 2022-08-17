@@ -9,6 +9,7 @@ urlpatterns = [
     path('sabad/<id>',views.sabad),
     path('next/<id>',views.next),
     path('sabt/<id>',views.sabt),
+    path('com/<id>',views.comment),
 
     
 ]

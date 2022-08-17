@@ -1,4 +1,5 @@
-from django.http import HttpResponseNotFound
+
+from django.http import HttpResponseNotFound,HttpResponse
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from . import models
@@ -76,8 +77,10 @@ def pro(request,id):
     pro = models.Product.objects.get(id=id)
     prod = models.Product.objects.all()
     cate = models.category.objects.all()
+    co = models.comment.objects.all()
+    commentCount = models.comment.objects.count()
     if pro:
-        return render(request,"pro.html",{"pro":pro,"cate":cate,"prod":prod,"banner":banner})
+        return render(request,"pro.html",{"pro":pro,"cate":cate,"prod":prod,"banner":banner,"comcount":commentCount,"comments":co})
     else:
         return HttpResponseNotFound("404") 
 def next(request,id):
@@ -90,11 +93,25 @@ def next(request,id):
             if a:
                 return redirect(f"/pro/{i}")
 def sabt(request,id):
-    try:
+    if request.user.is_authenticated:
         pro = models.Product.objects.get(id=id)
         a = request.user.id
-        models.sabad.objects.create(user_id=a,pro_id=pro)
-        return "ok"
-    except:
+        models.sabad.objects.create(id_user=a,id_pro=pro.id)
+        return HttpResponse("ok")
+    else:
         messages.info(request,"شما عوض سایت نشدید")
         return redirect('/pro/')
+def comment(request,id):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            a = request.POST['comment']
+            aa = models.comment.objects.create(text = a,user_id=request.user.id,username=request.user,Product_id=id)
+            
+            messages.success(request,"کامنت شما ثبت شد")
+            return redirect(f"../pro/{id}")
+        else:
+            messages.warning(request,"شما هنوز عضو سایت نشدید ")
+            return redirect(f"../pro/{id}")
+
+    else:
+        return redirect(f"../pro/{id}")
