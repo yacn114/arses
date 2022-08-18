@@ -50,7 +50,7 @@
                             <div class="widget_list widget_categories">
                                 <h2>مرتبط</h2>
                                 <ul>
-                                    {% for product in prod %}
+                                    {% for product in allp %}
                                     {% if pro.category == product.category %}
                                     <li>
                                         <input type="checkbox">
@@ -64,7 +64,7 @@
                             <div class="widget_list widget_categories">
                                 <h2>محصولات ویژه</h2>
                                 <ul>
-                                    {% for product in prod %}
+                                    {% for product in allp %}
                                     {% if product.vip == "yes" %}
                                     <li>
                                         <input type="checkbox">
@@ -175,7 +175,7 @@
                                         </div>
                                         <div class="product_variant quantity">
                                             <label>تعداد</label>
-                                            <form action="/sabt/{{pro.id}}" method="post">
+                                            <form action="/sabad/{{pro.id}}" method="post">
                                             {% csrf_token %}
                                             <input min="1" max="100" name="T" value="1" type="number">
                                             <button class="button" type="submit">افزودن به سبد</button>
@@ -282,7 +282,7 @@
                         </div>
                         <div class="product_carousel product_column4 owl-carousel">
 
-{% for pros in prod %}
+{% for pros in allp %}
 
 {% if pros.category == pro.category %}
     
@@ -295,13 +295,13 @@
                                     <div class="action_links">
                                         <ul>
                                             <form action="" method="post">
-                                                <li class="wishlist"><a href="/likes/{{of.id}}" type="submit" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>
+                                                <li class="wishlist"><a href="/likes/{{pro.id}}" type="submit" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>
                                                 </form>
                                                 
                                         </ul>
                                     </div>
                                     <div class="add_to_cart">
-                                        <form action="/sabad/{{of.id}}" method="post">
+                                        <form action="/sabad/{{pro.id}}" method="post">
                                             {% csrf_token %}
                                         <button type="submit" title="افزودن به سبد" style="width: auto; background-color: #FDB813;border: none;">افزودن به سبد</button>
                                     </form>
@@ -328,169 +328,46 @@
                             <h2>محصولات پر فروش</h2>
                         </div>
                         <div class="product_carousel product_column4 owl-carousel">
+                            
+                            {% for products in buy %}
+                                
+                            
+                            
+                                
+
+                                
+                                
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product7.jpg" alt=""></a>
-                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product8.jpg" alt=""></a>
+                                    <a class="primary_img" href="../pro/{{products.id}}"><img src="../ProductImage/{{products.picture}}" alt=""></a>
+                                    <a class="secondary_img" href="../pro/{{products.id}}"><img src="../ProductImage/{{products.picture2}}" alt=""></a>
                                     <div class="label_product">
-                                        <span class="label_sale">-6%</span>
+                                        <span class="label_sale">{{products.price_offer}}%</span>
                                     </div>
 
                                     <div class="action_links">
                                         <ul>
                                             <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>  
-                                            <li class="compare"><a href="compare.html" title="مقایسه"><i class="icon-repeat"></i></a></li>                     <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="نمایش سریع"> <i class="icon-eye"></i></a></li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="add_to_cart">
-                                        <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
+                                        <form action="/sabad/{{pro.id}}" method="post">
+                                            {% csrf_token %}
+                                        <button type="submit" title="افزودن به سبد" style="width: auto; background-color: #FDB813;border: none;">افزودن به سبد</button>
+                                    </form>
                                     </div>
                                 </div>
                                 <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">عنوان محصول</a></p>
-                                    <h4><a href="product-details.html">لوگوی بازتاب جین کالوین کلاین</a></h4>
+                                    <p class="manufacture_product"><a href="../pro/{{products.id}}">{{products}}</a></p>
+                                    <h4><a href="../pro/{{products.id}}">{{products.caption}}</a></h4>
                                     <div class="price_box">
-                                        <span class="old_price">2000 تومان</span>
-                                        <span class="current_price">900 تومان</span>
+                                        <span class="old_price">{{products.price}} تومان</span>
+                                        <span class="current_price">{% takhfif products.price products.price_offer%} تومان</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single_product">
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product9.jpg" alt=""></a>
-                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product10.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-12%</span>
-                                    </div>
-
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>  
-                                            <li class="compare"><a href="compare.html" title="مقایسه"><i class="icon-repeat"></i></a></li>                     <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="نمایش سریع"> <i class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="add_to_cart">
-                                        <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
-                                    </div>
-                                </div>
-                                <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">عنوان محصول</a></p>
-                                    <h4><a href="product-details.html">ضد یخ فومن شیمی محصول بی نظیر</a></h4>
-                                    <div class="price_box">
-                                        <span class="old_price">3000 تومان</span>
-                                        <span class="current_price">2500 تومان</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single_product">
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product11.jpg" alt=""></a>
-                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product12.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-4%</span>
-                                    </div>
-
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>  
-                                            <li class="compare"><a href="compare.html" title="مقایسه"><i class="icon-repeat"></i></a></li>                     <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="نمایش سریع"> <i class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="add_to_cart">
-                                        <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
-                                    </div>
-                                </div>
-                                <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">عنوان محصول</a></p>
-                                    <h4><a href="product-details.html">دیوار کوپ مجهز به دوربین داخلی</a></h4>
-                                    <div class="price_box">
-                                        <span class="old_price">2000 تومان</span>
-                                        <span class="current_price">1500 تومان</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single_product">
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product1.jpg" alt=""></a>
-                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product2.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-5%</span>
-                                    </div>
-
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>  
-                                            <li class="compare"><a href="compare.html" title="مقایسه"><i class="icon-repeat"></i></a></li>                     <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="نمایش سریع"> <i class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="add_to_cart">
-                                        <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
-                                    </div>
-                                </div>
-                                <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">عنوان محصول</a></p>
-                                    <h4><a href="product-details.html">دیوار کوپ مجهز به دوربین داخلی</a></h4>
-                                    <div class="price_box">
-                                        <span class="old_price">1800 تومان</span>
-                                        <span class="current_price">1000 تومان</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single_product">
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product3.jpg" alt=""></a>
-                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product4.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-8%</span>
-                                    </div>
-
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>  
-                                            <li class="compare"><a href="compare.html" title="مقایسه"><i class="icon-repeat"></i></a></li>                     <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="نمایش سریع"> <i class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="add_to_cart">
-                                        <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
-                                    </div>
-                                </div>
-                                <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">عنوان محصول</a></p>
-                                    <h4><a href="product-details.html">عایق مقاوم در برابر آب و باد و طوفان...</a></h4>
-                                    <div class="price_box">
-                                        <span class="old_price">2000 تومان</span>
-                                        <span class="current_price">1000 تومان</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single_product">
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product5.jpg" alt=""></a>
-                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product6.jpg" alt=""></a>
-                                    <div class="label_product">
-                                        <span class="label_sale">-10%</span>
-                                    </div>
-
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه مندیها"><i class="icon-heart"></i></a></li>  
-                                            <li class="compare"><a href="compare.html" title="مقایسه"><i class="icon-repeat"></i></a></li>                     <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="نمایش سریع"> <i class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="add_to_cart">
-                                        <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
-                                    </div>
-                                </div>
-                                <div class="product_content">
-                                    <p class="manufacture_product"><a href="#">عنوان محصول</a></p>
-                                    <h4><a href="product-details.html">ترانس برق مدرن با ولتاژ بسیار قوی...</a></h4>
-                                    <div class="price_box">
-                                        <span class="old_price">1900 تومان</span>
-                                        <span class="current_price">1000 تومان</span>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </section>
                     <!--product area end-->

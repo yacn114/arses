@@ -295,10 +295,10 @@
                                       
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="pro/{{pro.id}}"><img src="ProductImage/{{pro.picture}}" alt="آرسس تکنو"></a>
+                                            <a href="pro/{{pro.id}}"><img src="../ProductImage/{{pro.picture}}" alt="آرسس تکنو"></a>
                                         </div>
                                         <div class="cart_info">
-                                           <a href="pro/{{pro.id}}">{{pro.name}}</a>
+                                           <a href="/pro/{{pro.id}}">{{pro.name}}</a>
                                             {% load custom_tags %}
                                             <span class="quantity">تعداد: 1</span>
                                             <span class="price_old">{% takhfif pro.price pro.price_offer%} تومان</span>
@@ -306,7 +306,7 @@
                                         </div>
 
                                         <div class="cart_remove">
-                                            <a href="pro/{{pro.id}}"><i class="ion-android-close"></i></a>
+                                            <a href="/prono/{{pro.id}}"><i class="ion-android-close"></i></a>
                                         </div>
                                     </div>
                                     

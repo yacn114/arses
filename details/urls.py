@@ -7,7 +7,8 @@ urlpatterns = [
     path('contact',views.contact,name="contact"),
     path('my-account',views.account,name="account"),
     path('security',views.security,name="security"),
-    path('c/<parametr>',views.category,name="security"),
-    path('sabad',views.sabad,name="sabad"),
-    path('likes',views.likes,name="likes"),
+    path('c/<parametr>',views.categoryview,name="security"),
+    path('pro/<id>',views.pro),
+    path('next/<id>',views.next),
+    path('com/<id>',views.comment),
 ]
