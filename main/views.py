@@ -10,6 +10,7 @@ def main(request):
     Offrs = []
     banner2 = models.Image_trend_2.objects.all()
     banner = models.image_u.objects.first()
+    category = models.category.objects.all()
     product_all = models.Product.objects.all()
     sabad = models.sabad.objects.count()
     ino = models.interest.objects.count()
@@ -21,7 +22,6 @@ def main(request):
             
             
             Offrs += models.Product.objects.filter(name= e)
-    category = models.category.objects.all()
     if request.method == "POST":
         form = Emailc(request.POST)
         if form.is_valid():
@@ -63,12 +63,24 @@ def likes(request,id):
     else:
         messages.info(request,"شما عضو سایت نشدید")
         return redirect('/')
-def sabad(request,id):
-    if request.user.is_authenticated:
-        pro = models.Product.objects.get(id=id)
-        a = request.user.id
-        models.sabad.objects.create(id_user=a,id_pro=pro.id)
-        return redirect('../')
-    else:
-        messages.info(request,"شما عوض سایت نشدید")
-        return redirect('../')
+def sabad(request,id=0):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            try:
+                if models.sabad.objects.get(id_pro=id) == True:
+                    return redirect("/sabad")
+            except:
+                pro = models.Product.objects.get(id=id)
+                a = request.user.id
+                t = request.POST['T']
+                models.sabad.objects.create(id_user=a,id_pro=pro.id,T=t)
+                return redirect('../')
+        else:
+            messages.info(request,"شما عوض سایت نشدید")
+            return redirect('../')
+    sabad = models.sabad.objects.count()
+    ino = models.interest.objects.count()
+    saba = models.sabad.objects.all()
+    category = models.category.objects.all()
+    product_all = models.Product.objects.all()
+    return render(request,"sabad.html",{"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all})

@@ -186,7 +186,7 @@
                         <div class="col-lg-9 col-md-9">
                             <div class="top_right text-right">
                                 <ul>
-                                    <li><a href="compare.html"><i class="icon-repeat"></i> مقایسه (0)</a></li>
+                                    
                                     <li class="top_links"><a href="#">تنظیم <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                         <ul class="dropdown_links">
                                             
@@ -300,30 +300,24 @@
                                         <div class="cart_info">
                                            <a href="/pro/{{pro.id}}">{{pro.name}}</a>
                                             {% load custom_tags %}
-                                            <span class="quantity">تعداد: 1</span>
+                                            <span class="quantity">تعداد: {{sa.T}}</span>
                                             <span class="price_old">{% takhfif pro.price pro.price_offer%} تومان</span>
 
                                         </div>
 
                                         <div class="cart_remove">
-                                            <a href="/prono/{{pro.id}}"><i class="ion-android-close"></i></a>
+                                        <form action="/delete/{{pro.id}}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" style="border: none;background-color: white;" ><i class="ion-android-close"></i></button>
+                                        </form>
+
                                         </div>
                                     </div>
                                     
                                     {% endif %}
                                     {% endfor %}
                                     {% endfor %}
-  <div class="mini_cart_table">
-                                        <div class="cart_total">
-                                            <span>مجموع سبد:</span>
-                                            <span class="price">13800 تومان</span>
-                                        </div>
-                                        <div class="cart_total mt-10">
-                                            <span>قیمت کل:</span>
-                                            <span class="price">13800 تومان</span>
-                                        </div>
-                                    </div>
-
+  
 
                                     <div class="mini_cart_footer">
                                         <div class="cart_button">

@@ -28,10 +28,11 @@ def pro(request,id):
     sabad1 = sabad.objects.count()
     ino = interest.objects.count()
     co = models.comment.objects.all()
+
     buyful = Product.objects.all().order_by('buyers')[:10]
     commentCount = models.comment.objects.filter(id=id).count()
     if pro:
-        return render(request,"pro.html",{"pro":pro,"cate":cate,"allp":prod,"banner":banner,"comcount":commentCount,"comments":co,"sabad":sabad1,"ino":ino,"saba":saba,
+        return render(request,"pro.html",{"pro":pro,"category":cate,"allp":prod,"banner":banner,"comcount":commentCount,"comments":co,"sabad":sabad1,"ino":ino,"saba":saba,
         "buy":buyful})
     else:
         return HttpResponseNotFound("404") 
@@ -59,3 +60,6 @@ def comment(request,id):
 
     else:
         return redirect(f"../pro/{id}")
+def delete(request,id):
+    sabad.objects.get(id_pro=id).delete()
+    return redirect("/sabad")

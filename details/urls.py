@@ -11,4 +11,5 @@ urlpatterns = [
     path('pro/<id>',views.pro),
     path('next/<id>',views.next),
     path('com/<id>',views.comment),
+    path('delete/<id>',views.delete)
 ]

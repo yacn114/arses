@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="index.html">صفحه اصلی</a></li>
+                            <li>سبد خرید فروشگاه</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--shopping cart area start -->
+    <div class="shopping_cart_area mt-32">
+        <div class="container">
+            <form action="#">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table_desc">
+                            <div class="cart_page table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product_remove">حذف</th>
+                                            <th class="product_thumb">تصویر</th>
+                                            <th class="product_name">محصول</th>
+                                            <th class="product-price">قیمت</th>
+                                            <th class="product_quantity">تعداد</th>
+                                            <th class="product_total">مجموع</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for sab in saba %}
+                                        
+                                        {% for all in allp %}
+                                            
+                                        
+                                            
+                                        {% if sab.id_pro == all.id %}
+                                            
+                                        <tr>
+                                            <td class="product_remove"><a href="/pro/{{all.id}}"><i class="fa fa-trash-o"></i></a></td>
+                                            <td class="product_thumb"><a href="/pro/{{all.id}}"><img src="../ProductImage/{{all.picture}}" alt=""></a></td>
+                                            <td class="product_name"><a href="/pro/{{all.id}}">{{all}}</a></td>
+                                            {% load custom_tags %}
+                                            <td class="product-price">{% takhfif all.price all.price_offer %} تومان</td>
+                                            <td class="product_quantity"><label>تعداد</label> <input min="1" max="100" value="{{sab.T}}" type="number"></td>
+                                            <td class="product_total">1150 تومان</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="cart_submit">
+                                <button type="submit">آپدیت سبد</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--coupon code area start-->
+                <div class="coupon_area">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="coupon_code left">
+                                <h3>کد تخفیف</h3>
+                                <div class="coupon_inner">
+                                    <p>در صورت داشتن کد تخفیف خود را وارد کنید.</p>
+                                    <input placeholder="کد تخفیف" type="text">
+                                    <button type="submit">اعمال کد</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="coupon_code right">
+                                <h3>کل سبد خرید</h3>
+                                <div class="coupon_inner">
+                                    <div class="cart_subtotal">
+                                        <p>مجموع</p>
+                                        <p class="cart_amount"> 25500 تومان</p>
+                                    </div>
+                                    <div class="cart_subtotal ">
+                                        <p>حمل دریایی</p>
+                                        <p class="cart_amount"><span>نرخ اصلی:</span> 25500 تومان</p>
+                                    </div>
+                                    <a href="#">حمل و نقل را محاسبه کنید</a>
+
+                                    <div class="cart_subtotal">
+                                        <p>مجموع</p>
+                                        <p class="cart_amount"> 25500 تومان</p>
+                                    </div>
+                                    <div class="checkout_btn">
+                                        <a href="#">بررسی و پرداخت</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--coupon code area end-->
+            </form>
+        </div>
+    </div>
+    <!--shopping cart area end -->
+{% endblock content %}
+    
