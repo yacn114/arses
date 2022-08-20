@@ -40,8 +40,13 @@
                                     </thead>
                                     <tbody>
 
+
                                         {% for sab in saba %}
                                         
+                                        {% if sab.id_user == id_use %}
+                                            
+                                        
+                                                                                    
                                         {% for all in allp %}
                                             
                                         
@@ -49,16 +54,22 @@
                                         {% if sab.id_pro == all.id %}
                                             
                                         <tr>
-                                            <td class="product_remove"><a href="/pro/{{all.id}}"><i class="fa fa-trash-o"></i></a></td>
+                                            
+                                            <form action="/delete/{{all.id}}" method="post">
+                                                {% csrf_token %}
+                                                
+                                                <td class="product_remove"><button type="submit" style="width:50px; border: none;background-color: white;" ><i class="fa fa-trash-o"></i></button></td>
+                                            </form>
                                             <td class="product_thumb"><a href="/pro/{{all.id}}"><img src="../ProductImage/{{all.picture}}" alt=""></a></td>
                                             <td class="product_name"><a href="/pro/{{all.id}}">{{all}}</a></td>
                                             {% load custom_tags %}
                                             <td class="product-price">{% takhfif all.price all.price_offer %} تومان</td>
                                             <td class="product_quantity"><label>تعداد</label> <input min="1" max="100" value="{{sab.T}}" type="number"></td>
-                                            <td class="product_total">1150 تومان</td>
+                                            <td class="product_total">{% jam all.price all.price_offer sab.T %} تومان</td>
                                         </tr>
                                         {% endif %}
                                         {% endfor %}
+                                        {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>
@@ -72,23 +83,26 @@
                 <!--coupon code area start-->
                 <div class="coupon_area">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="coupon_code left">
-                                <h3>کد تخفیف</h3>
-                                <div class="coupon_inner">
-                                    <p>در صورت داشتن کد تخفیف خود را وارد کنید.</p>
-                                    <input placeholder="کد تخفیف" type="text">
-                                    <button type="submit">اعمال کد</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
+
+                        <div class="col-lg-12 col-md-12">
                             <div class="coupon_code right">
                                 <h3>کل سبد خرید</h3>
                                 <div class="coupon_inner">
                                     <div class="cart_subtotal">
                                         <p>مجموع</p>
-                                        <p class="cart_amount"> 25500 تومان</p>
+                                        <p class="cart_amount"> 
+                                            {% for sab in saba %}
+                                            {% if sab.id_user == id_use %}                       
+                                            {% for all in allp %}
+                                            {% if sab.id_pro == all.id %}
+                                            
+                                            {% jam2 all.price all.price_offer sab.T%}
+                                            
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% endif %}
+                                            {% endfor %}
+                                             تومان</p>
                                     </div>
                                     <div class="cart_subtotal ">
                                         <p>حمل دریایی</p>

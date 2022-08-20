@@ -118,10 +118,13 @@ class sabad(models.Model):
     id_pro = models.IntegerField()
     T = models.IntegerField(_("تعداد"),default=1)
     id_user = models.IntegerField(blank=True,null=True)
+class jamsabad(models.Model):
+    jam = models.IntegerField(blank=True,null=True)    
+    id_user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("سبد خرید")
-        verbose_name_plural = _("سبد خرید")
+        verbose_name = _("jam")
+        verbose_name_plural = _("jam sabad")
 
 class Brand(models.Model):
     name = models.CharField(_("نام"),max_length=200)

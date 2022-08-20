@@ -61,5 +61,10 @@ def comment(request,id):
     else:
         return redirect(f"../pro/{id}")
 def delete(request,id):
-    sabad.objects.get(id_pro=id).delete()
-    return redirect("/sabad")
+    if request.user.is_authenticated:    
+        a = request.user.id
+        sabad.objects.get(id_pro=id,id_user=a).delete()
+        return redirect("/sabad")
+    else:
+        messages.info(request,"شما هنوز عضو سایت نشدید")
+        redirect("../")

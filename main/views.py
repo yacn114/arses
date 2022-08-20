@@ -1,4 +1,5 @@
 
+from queue import Empty
 from django.http import HttpResponseNotFound,HttpResponse
 from django.contrib import messages
 from django.shortcuts import render,redirect
@@ -66,21 +67,47 @@ def likes(request,id):
 def sabad(request,id=0):
     if request.method == "POST":
         if request.user.is_authenticated:
+            id_use = request.user.id
+            t = 0
             try:
-                if models.sabad.objects.get(id_pro=id) == True:
-                    return redirect("/sabad")
-            except:
                 pro = models.Product.objects.get(id=id)
                 a = request.user.id
-                t = request.POST['T']
+                if request.POST['T']:
+                    t =request.POST['T']      
                 models.sabad.objects.create(id_user=a,id_pro=pro.id,T=t)
+                if models.jamsabad.objects.get(id_user=a):
+                    pass
+                else:
+                    models.jamsabad.objects.create(id_user=a)
+
                 return redirect('../')
+            except:
+                if models.sabad.objects.get(id_pro=id) == True:
+                    return redirect("/sabad")
+
+        sabad = models.sabad.objects.count()
+        ino = models.interest.objects.count()
+        saba = models.sabad.objects.all()
+        category = models.category.objects.all()
+        product_all = models.Product.objects.all()
+        if request.user.is_authenticated:
+            id_use = request.user.id
         else:
-            messages.info(request,"شما عوض سایت نشدید")
-            return redirect('../')
-    sabad = models.sabad.objects.count()
-    ino = models.interest.objects.count()
-    saba = models.sabad.objects.all()
-    category = models.category.objects.all()
-    product_all = models.Product.objects.all()
-    return render(request,"sabad.html",{"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all})
+            id_use = 0
+        return render(request,"sabad.html",{"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use})
+
+    #         try:
+    #         except:
+    #     else:
+    #         messages.info(request,"شما عوض سایت نشدید")
+    #         return redirect('../')
+    # sabad = models.sabad.objects.count()
+    # ino = models.interest.objects.count()
+    # saba = models.sabad.objects.all()
+    # category = models.category.objects.all()
+    # product_all = models.Product.objects.all()
+    # if request.user.is_authenticated:
+    #     id_use = request.user.id
+    # else:
+    #     id_use = 0
+    # return render(request,"sabad.html",{"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use})

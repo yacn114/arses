@@ -165,7 +165,7 @@
 
                                         </div>
                                         <div class="price_box">
-                                         <span class="old_price">{{pro.price}} تومان</span>
+                                         <span class="old_price">{% format pro.price %} تومان</span>
                                             <span class="current_price"> {% takhfif pro.price pro.price_offer %} تومان </span>
                                             
 
@@ -311,7 +311,7 @@
                                     <p class="manufacture_product"><a href="#">{{pros}}</a></p>
                                     <h4><a href="product-details.html">{{pros.caption}}</a></h4>
                                     <div class="price_box">
-                                        <span class="old_price">{{pros.price}} تومان</span>
+                                        <span class="old_price">{% format pros.price%} تومان</span>
                                         <span class="current_price">{% takhfif pros.price pros.price_offer %} تومان</span>
                                     </div>
                                 </div>
@@ -362,7 +362,7 @@
                                     <p class="manufacture_product"><a href="../pro/{{products.id}}">{{products}}</a></p>
                                     <h4><a href="../pro/{{products.id}}">{{products.caption}}</a></h4>
                                     <div class="price_box">
-                                        <span class="old_price">{{products.price}} تومان</span>
+                                        <span class="old_price">{% format products.price%} تومان</span>
                                         <span class="current_price">{% takhfif products.price products.price_offer%} تومان</span>
                                     </div>
                                 </div>

@@ -173,7 +173,7 @@
                             <p class="manufacture_product"><a href="pro/{{of.id}}">عنوان محصول</a></p>
                             <h4><a href="pro/{{of.id}}">{{of.name}}</a></h4>
                             <div class="price_box">
-                                <span class="old_price">{{of.price}} تومان</span>
+                                <span class="old_price">{% format of.price%} تومان</span>
                                 <span class="current_price">{% takhfif of.price of.price_offer %} تومان</span>
                             </div>
                         </div>
@@ -275,8 +275,8 @@
                                     <p class="manufacture_product"><a href="pro/{{al.id}}">{{al}}</a></p>
                                     <h4><a href="pro/{{al.id}}">{{al.caption}}</a></h4>
                                     <div class="price_box">
-                                        <span class="old_price">{{al.price}} تومان </span>
-                                        <span class="current_price">{{al.price_offer }} تومان</span>
+                                        <span class="old_price">{% format al.price%} تومان </span>
+                                        <span class="current_price">{% takhfif al.price al.price_offer %} تومان</span>
                                     </div>
                                 </div>
                             </div>
