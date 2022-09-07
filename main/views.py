@@ -1,6 +1,3 @@
-
-from queue import Empty
-from django.http import HttpResponseNotFound,HttpResponse
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from . import models
@@ -9,12 +6,21 @@ from .forms import Emailc
 
 def main(request):
     Offrs = []
+    if request.user.is_authenticated:
+        id_use = request.user.id
+    else:
+        id_use = 0
     banner2 = models.Image_trend_2.objects.all()
     banner = models.image_u.objects.first()
     category = models.category.objects.all()
     product_all = models.Product.objects.all()
-    sabad = models.sabad.objects.count()
-    ino = models.interest.objects.count()
+    if request.user.is_authenticated:
+        
+        sabad = len(models.sabad.objects.filter(id_user=request.user.id))
+        ino = len(models.interest.objects.filter(id_user=request.user.id))
+    else:
+        sabad = 0
+        ino = 0
     saba = models.sabad.objects.all()
     brands = models.Brand.objects.all()
     
@@ -28,7 +34,7 @@ def main(request):
         if form.is_valid():
             email=models.Email()
             email.Email = form.cleaned_data['Email']
-            if models.Email.objects.get(Email=email.Email):
+            if models.Email.objects.filter(Email=email.Email).exists():
                 messages.warning(request,"فرمت ایمیل درست نیست یا قبلا ثبت شده")
             else:
                 email.save()
@@ -39,7 +45,7 @@ def main(request):
     
     return render(request,
     "index.html",
-    {"data_banner":banner2,"ofpr":Offrs,
+    {"data_banner":banner2,"id_use":id_use,"ofpr":Offrs,
     "category":category,"allp":product_all,
     "banner":banner,"brand":brands,"form":form,
     "ino":ino,"sabad":sabad,
@@ -66,48 +72,28 @@ def likes(request,id):
         return redirect('/')
 def sabad(request,id=0):
     if request.method == "POST":
+        
         if request.user.is_authenticated:
-            id_use = request.user.id
-            t = 0
-            try:
-                pro = models.Product.objects.get(id=id)
-                a = request.user.id
-                if request.POST['T']:
-                    t =request.POST['T']      
-                models.sabad.objects.create(id_user=a,id_pro=pro.id,T=t)
-                if models.jamsabad.objects.get(id_user=a):
-                    pass
-                else:
-                    models.jamsabad.objects.create(id_user=a)
-
-                return redirect('../')
-            except:
-                if models.sabad.objects.get(id_pro=id) == True:
-                    return redirect("/sabad")
-
-        sabad = models.sabad.objects.count()
-        ino = models.interest.objects.count()
-        saba = models.sabad.objects.all()
-        category = models.category.objects.all()
-        product_all = models.Product.objects.all()
-        if request.user.is_authenticated:
-            id_use = request.user.id
-        else:
-            id_use = 0
-        return render(request,"sabad.html",{"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use})
-
-    #         try:
-    #         except:
-    #     else:
-    #         messages.info(request,"شما عوض سایت نشدید")
-    #         return redirect('../')
-    # sabad = models.sabad.objects.count()
-    # ino = models.interest.objects.count()
-    # saba = models.sabad.objects.all()
-    # category = models.category.objects.all()
-    # product_all = models.Product.objects.all()
-    # if request.user.is_authenticated:
-    #     id_use = request.user.id
-    # else:
-    #     id_use = 0
-    # return render(request,"sabad.html",{"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use})
+            if models.sabad.objects.filter(id_user=request.user.id,id_pro=id).exists():
+                return redirect("../")
+            else:
+                t = request.POST['T']
+                sp = request.POST['hidden']
+                p = sp.replace(",", "")
+                models.sabad.objects.create(id_user=request.user.id,id_pro=id,T=t,p=p)
+                return redirect("../")
+                
+    id_use = 0
+    if request.user.is_authenticated:
+        id_use = request.user.id
+    
+#################################################################################
+    sabad = models.sabad.objects.count()
+    ino = models.interest.objects.count()
+    saba = models.sabad.objects.all()
+    category = models.category.objects.all()
+    product_all = models.Product.objects.all()
+    return render(request,
+    "sabad.html",{
+"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use
+    })

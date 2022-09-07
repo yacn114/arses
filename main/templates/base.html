@@ -211,7 +211,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-md-6">
                         <div class="logo">
-                            <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %}" alt="آرسس تکنو"></a>
+                            <a href="../"><img src="{% static 'assets/img/logo/logo.png' %}" alt="آرسس تکنو"></a>
                         </div>
                     </div>
                     <div class="col-lg-10 col-md-6 header_position">
@@ -286,22 +286,23 @@
                                 <span class="cart_quantity">{{sabad}}</span>
                                 <!--mini cart-->
                                 <div class="mini_cart">
-                                    
+
+
                                     {% for sa in saba %}
-                                    
+                                    {% if sa.id_user == id_use %}
                                     {% for pro in allp %}
                                         
                                     {% if sa.id_pro == pro.id %}
                                       
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="pro/{{pro.id}}"><img src="../ProductImage/{{pro.picture}}" alt="آرسس تکنو"></a>
+                                            <a href="/pro/{{pro.id}}"><img src="../ProductImage/{{pro.picture}}" alt="آرسس تکنو"></a>
                                         </div>
                                         <div class="cart_info">
                                            <a href="/pro/{{pro.id}}">{{pro.name}}</a>
                                             {% load custom_tags %}
                                             <span class="quantity">تعداد: {{sa.T}}</span>
-                                            <span class="price_old">{% takhfif pro.price pro.price_offer%} تومان</span>
+                                            <span class="price_old">{% takhfif pro.price pro.price_offer id_use pro.id%} تومان</span>
 
                                         </div>
 
@@ -313,9 +314,9 @@
 
                                         </div>
                                     </div>
-                                    
                                     {% endif %}
                                     {% endfor %}
+                                    {% endif %}
                                     {% endfor %}
   
 
@@ -351,7 +352,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-5">
                             <div class="widgets_container contact_us">
                                 <div class="footer_logo">
-                                    <a href="#"><img src="assets/img/logo/logo.png" alt="آرسس تکنو"></a>
+                                    <a href="../"><img src="assets/img/logo/logo.png" alt="آرسس تکنو"></a>
                                 </div>
                                 <div class="footer_contact">
                                     <p>فروشگاه آرسس تکنو پیشگام در عرضه لوازم خانگی و صنعتی ...</p>
@@ -431,7 +432,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="footer_payment text-right">
-                                <a href="#"><img src="assets/img/icon/payment.png" alt="آرسس تکنو"></a>
+                                <a href="../"><img src="assets/img/icon/payment.png" alt="آرسس تکنو"></a>
                             </div>
                         </div>
                     </div>

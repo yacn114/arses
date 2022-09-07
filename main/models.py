@@ -118,9 +118,11 @@ class sabad(models.Model):
     id_pro = models.IntegerField()
     T = models.IntegerField(_("تعداد"),default=1)
     id_user = models.IntegerField(blank=True,null=True)
+    p = models.CharField(max_length=255)
 class jamsabad(models.Model):
-    jam = models.IntegerField(blank=True,null=True)    
-    id_user = models.ForeignKey(User,on_delete=models.CASCADE)
+    jam = models.IntegerField(blank=True,null=True)
+
+    id_user = models.IntegerField()
 
     class Meta:
         verbose_name = _("jam")

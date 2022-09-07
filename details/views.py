@@ -24,15 +24,24 @@ def pro(request,id):
     pro = Product.objects.get(id=id)
     prod = Product.objects.all()
     saba = sabad.objects.all()
+    if request.user.is_authenticated:
+        id_use = request.user.id
+    else:
+        id_use = 0
     cate = category.objects.all()
-    sabad1 = sabad.objects.count()
-    ino = interest.objects.count()
+    if request.user.is_authenticated:
+        
+        sabad1 = len(sabad.objects.filter(id_user=request.user.id))
+        ino = len(interest.objects.filter(id_user=request.user.id))
+    else:
+        sabad1 = 0
+        ino = 0
     co = models.comment.objects.all()
 
     buyful = Product.objects.all().order_by('buyers')[:10]
-    commentCount = models.comment.objects.filter(id=id).count()
+    commentCount = len(models.comment.objects.filter(Product_id=id))
     if pro:
-        return render(request,"pro.html",{"pro":pro,"category":cate,"allp":prod,"banner":banner,"comcount":commentCount,"comments":co,"sabad":sabad1,"ino":ino,"saba":saba,
+        return render(request,"pro.html",{"id_use":id_use,"pro":pro,"category":cate,"allp":prod,"banner":banner,"comcount":commentCount,"comments":co,"sabad":sabad1,"ino":ino,"saba":saba,
         "buy":buyful})
     else:
         return HttpResponseNotFound("404") 
@@ -63,7 +72,7 @@ def comment(request,id):
 def delete(request,id):
     if request.user.is_authenticated:    
         a = request.user.id
-        sabad.objects.get(id_pro=id,id_user=a).delete()
+        sabad.objects.filter(id_pro=id,id_user=a).delete()
         return redirect("/sabad")
     else:
         messages.info(request,"شما هنوز عضو سایت نشدید")
