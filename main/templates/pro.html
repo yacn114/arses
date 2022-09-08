@@ -178,6 +178,7 @@
                                             <form action="/sabad/{{pro.id}}" method="post">
                                             {% csrf_token %}
                                             <input type="hidden" value="{% takhfif pro.price pro.price_offer id_use pro.id%}" name="hidden">
+                                            <input type="hidden" value="{%format pro.price%}" name="hidden2">
                                             <input min="1" max="100" name="T" value="1" type="number">
                                             <button class="button" type="submit">افزودن به سبد</button>
                                         </form>

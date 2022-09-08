@@ -46,7 +46,10 @@ def res(id_use, *args, **kwargs):
         a = jamsabad.objects.get(id_user=id_use)
         return f"{a.jam:,}"
 @register.simple_tag
-def res(id_use, *args, **kwargs):
+def nerkhasli(id_use, *args, **kwargs):
     if id_use :
-        a = jamsabad.objects.get(id_user=id_use)
-        return f"{a.jam:,}"
+        a = sabad.objects.filter(id_user=id_use)
+        ab=0
+        for mm in a:
+            ab += int(mm.p2)
+        return f"{ab:,}"

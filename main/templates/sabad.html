@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+{% load custom_tags %}
+
+{% for sab in saba %}
+{% if sab.id_user == id_use %}                       
+{% for all in allp %}
+{% if sab.id_pro == all.id %}
+
+{% jam2 id_use%}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
         <div class="container">
@@ -62,7 +74,6 @@
                                             </form>
                                             <td class="product_thumb"><a href="/pro/{{all.id}}"><img src="../ProductImage/{{all.picture}}" alt=""></a></td>
                                             <td class="product_name"><a href="/pro/{{all.id}}">{{all}}</a></td>
-                                            {% load custom_tags %}
                                             <td class="product-price">{% takhfif all.price all.price_offer %} تومان</td>
                                             <td class="product_quantity"><label>تعداد</label> <input min="1" max="100" value="{{sab.T}}" type="number"></td>
                                             <td class="product_total">{% jam all.price all.price_offer sab.T %} تومان</td>
@@ -89,31 +100,20 @@
                                 <h3>کل سبد خرید</h3>
                                 <div class="coupon_inner">
                                     <div class="cart_subtotal">
-                                        <p>مجموع</p>
+                                        
                                         <p class="cart_amount"> 
-                                            {% for sab in saba %}
-                                            {% if sab.id_user == id_use %}                       
-                                            {% for all in allp %}
-                                            {% if sab.id_pro == all.id %}
-                                            
-                                            {% jam2 id_use%}
-                                            
-                                            {% endif %}
-                                            {% endfor %}
-                                            {% endif %}
-                                            {% endfor %}
-                                            {%res id_use%}
+                                           <span> مجموع :</span>{%res id_use%}
                                              تومان</p>
                                     </div>
                                     <div class="cart_subtotal ">
                                         
-                                        {% comment %} <p class="cart_amount"><span>نرخ اصلی:</span> {%nerkhasli id_use%} تومان</p> {% endcomment %}
+                                        <p class="cart_amount"><span>نرخ اصلی:</span> {%nerkhasli id_use%} تومان</p>
                                     </div>
-                                    <a href="#">حمل و نقل را محاسبه کنید</a>
+                                    {% comment %} <a href="#">حمل و نقل را محاسبه کنید</a> {% endcomment %}
 
                                     <div class="cart_subtotal">
                                         <p>مجموع</p>
-                                        <p class="cart_amount"> 25500 تومان</p>
+                                        <p class="cart_amount"> {%res id_use%} تومان</p>
                                     </div>
                                     <div class="checkout_btn">
                                         <a href="#">بررسی و پرداخت</a>

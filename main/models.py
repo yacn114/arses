@@ -119,6 +119,7 @@ class sabad(models.Model):
     T = models.IntegerField(_("تعداد"),default=1)
     id_user = models.IntegerField(blank=True,null=True)
     p = models.CharField(max_length=255)
+    p2 = models.CharField(max_length=255)
 class jamsabad(models.Model):
     jam = models.IntegerField(blank=True,null=True)
 
