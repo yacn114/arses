@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{%block content%}
+<form class="col-8" style="margin: auto;border: 1px solid gainsboro; margin-top: 50px; padding: 50px;" method="POST" action="{% url 'auth' %}">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <!-- <label for="exampleFormControlInput1" class="form-label">Email address</label> -->
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="اسمت">
+      </div>
+      <div class="mb-3">
+        <!-- <label for="exampleFormControlInput1" class="form-label">Email address</label> -->
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="شمارت">
+      </div>
+      <button type="button" class="btn btn-warning">ثبت</button>
+</form>
+<br>
+<br>
+<hr>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+{%endblock content%}
