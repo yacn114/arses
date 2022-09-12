@@ -12,3 +12,4 @@ def auth(request):
         return HttpResponseRedirect("../signup")
 def signup(request):
     return render(request,'user.html',{"mmd":AuthenticationForm})
+    
