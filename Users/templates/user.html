@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {%block content%}
-<form class="col-8" style="margin: auto;border: 1px solid gainsboro; margin-top: 50px; padding: 50px;" method="POST" action="{% url 'auth' %}">
+
+<form class="col-8" style="border-radius: 15px; margin: auto;border: 1px solid gainsboro;background-color: aliceblue; margin-top: 50px; padding: 50px;" method="POST" action="{% url 'auth' %}">
     {% csrf_token %}
-    
-    <div class="mb-3">
+<div class="col-12" style="margin: auto; ">
+    <div class="mb-4">
         <!-- <label for="exampleFormControlInput1" class="form-label">Email address</label> -->
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="اسمت">
+        <input type="text" name="name" style="text-align: center;padding: 10px;" class="form-control" id="exampleFormControlInput1" placeholder="اسمت" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-4">
         <!-- <label for="exampleFormControlInput1" class="form-label">Email address</label> -->
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="شمارت">
+        <input type="text" name="phone" class="form-control" style="text-align: center;padding: 20px;" id="exampleFormControlInput1" placeholder="شمارت 09301741497" required>
       </div>
-      <button type="button" class="btn btn-warning">ثبت</button>
+      <button type="submit" class="btn btn-warning">ثبت</button>
+    </div>    
 </form>
 <br>
 <br>
 <hr>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 {%endblock content%}
