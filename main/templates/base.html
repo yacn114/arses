@@ -122,7 +122,7 @@
                             <div class="customer_support_text">
                                 <p>
                                     <span>پشتیبان مشتری</span>
-                                    <a href="tel:09055401556">09055401556</a>
+                                    <a href="tel:09301741497">09301741497</a>
                                 </p>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                   
                                     <li><a class="active" href="/">صفحه اصلی<i class="fa"></i></a>
                                     </li>
-
+                                    <li><a href="#">{{name}}</a></li>
                                     <li><a href="/about">درباره ما </a> </li>
                                     <li><a href="/login">ورود</a> </li>
                                     <li><a href="/signup">ثبت نام</a> </li>
@@ -189,7 +189,7 @@
                                     
                                     <li class="top_links"><a href="#">تنظیم <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                         <ul class="dropdown_links">
-                                            
+                                            <li><a href="#">{{name}}</a></li>
                                             <li><a href="/my-account">حساب من </a> </li>
                                             <li><a href="/sabad">سبد خرید </a></li>
                                             <li><a href="/likes">لیست دلخواه </a> </li>
@@ -223,9 +223,14 @@
                                         </li>
  
                                         <li><a href="/about">درباره ما </a> </li>
+                                        <li><a href="/contact"> تماس با ما</a></li>
+                                        {% if id_use %}
+                                        <li><a href="">{{name}}</a></li>  
+                                        {% else %}
                                         <li><a href="/login">ورود</a> </li>
                                         <li><a href="/signup">ثبت نام</a> </li>
-                                        <li><a href="/contact"> تماس با ما</a></li>
+                                        {% endif %}
+                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -236,7 +241,7 @@
                                 <div class="customer_support_text">
                                     <p>
                                         <span>پشتیبان مشتری</span>
-                                        <a href="tel:09055401556">09055401556</a>
+                                        <a href="tel:09301741497">09301741497</a>
                                     </p>
                                 </div>
                             </div>
@@ -363,7 +368,7 @@
                                         <div class="customer_support_text">
                                             <p>
                                                 <span>پشتیبان مشتری</span>
-                                                <a href="tel:09055401556" dir="ltr">0905 540 1556</a>
+                                                <a href="tel:09301741497" dir="ltr">09301741497</a>
                                             </p>
                                         </div>
                                     </div>

@@ -8,6 +8,7 @@ def main(request):
     Offrs = []
     if request.user.is_authenticated:
         id_use = request.user.id
+        name = request.user.username
     else:
         id_use = 0
     banner2 = models.Image_trend_2.objects.all()
@@ -45,7 +46,7 @@ def main(request):
     
     return render(request,
     "index.html",
-    {"data_banner":banner2,"id_use":id_use,"ofpr":Offrs,
+    {"name":name,"data_banner":banner2,"id_use":id_use,"ofpr":Offrs,
     "category":category,"allp":product_all,
     "banner":banner,"brand":brands,"form":form,
     "ino":ino,"sabad":sabad,
@@ -60,7 +61,7 @@ def search(request):
 def sabadolikes(request):
     models.sabad.objects.all()
     models.interest.objects.all()
-    pass
+    
 def likes(request,id):
     if request.user.is_authenticated:
         pro = models.Product.objects.get(id=id)
@@ -88,6 +89,7 @@ def sabad(request,id=0):
     id_use = 0
     if request.user.is_authenticated:
         id_use = request.user.id
+        name = request.user.username
     
 #################################################################################
     sabad = models.sabad.objects.count()
@@ -97,5 +99,5 @@ def sabad(request,id=0):
     product_all = models.Product.objects.all()
     return render(request,
     "sabad.html",{
-"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use
+"ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use,"name":name
     })
