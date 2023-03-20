@@ -11,6 +11,7 @@ def main(request):
         name = request.user.username
     else:
         id_use = 0
+        name = ""
     banner2 = models.Image_trend_2.objects.all()
     banner = models.image_u.objects.first()
     category = models.category.objects.all()
@@ -90,7 +91,8 @@ def sabad(request,id=0):
     if request.user.is_authenticated:
         id_use = request.user.id
         name = request.user.username
-    
+    else:
+        name = ""
 #################################################################################
     sabad = models.sabad.objects.count()
     ino = models.interest.objects.count()
@@ -101,3 +103,4 @@ def sabad(request,id=0):
     "sabad.html",{
 "ino":ino,"sabad":sabad,"saba":saba,"category":category,"allp":product_all,"id_use":id_use,"name":name
     })
+
